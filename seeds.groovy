@@ -5,7 +5,7 @@ gh.getOrganization('chef-cookbooks').listRepositories().each { repo ->
   job(repo.name) {
     scm { github(repo.fullName) }
     steps { 
-      shell('KITCHEN_LOCAL_YAML=.kitchen.docker.yml /opt/chefdk/embedded/bin/kitchen verify')
+      shell('KITCHEN_LOCAL_YAML=.kitchen.docker.yml /opt/chefdk/embedded/bin/kitchen test')
     } 
     triggers {
         cron('@daily')
