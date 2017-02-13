@@ -7,7 +7,7 @@ gh.getOrganization('chef-cookbooks').listRepositories().each { repo ->
     steps { 
       shell('KITCHEN_LOCAL_YAML=.kitchen.docker.yml /opt/chefdk/embedded/bin/kitchen test')
     } 
-    publisher {
+    publishers {
       postBuildScript {
         buildStep {
           scriptOnlyIfFailure(false)
