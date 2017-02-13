@@ -11,10 +11,12 @@ def gh = GitHub.connectAnonymously()
         postBuildScript {
           buildStep {
             scriptOnlyIfFailure(false)
-              scriptOnlyIfSuccess(false)
-              shell {
-                command('KITCHEN_LOCAL_YAML=.kitchen.docker.yml /opt/chefdk/embedded/bin/kitchen destroy')
-              }
+            scriptOnlyIfSuccess(false)
+            markBuildUnstable(false)
+            executeOn("BOTH")
+            shell {
+              command('KITCHEN_LOCAL_YAML=.kitchen.docker.yml /opt/chefdk/embedded/bin/kitchen destroy')
+            }
           }
         }
       }
